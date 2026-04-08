@@ -7,6 +7,31 @@ public class User {
 	String gender;
 	
 	
+	// Constructor for User selecting BMI
+	public User(int age, double height, double weight) {
+		// TODO Auto-generated constructor stub
+		this.age = age;
+		this.height = height;
+		this.weight = weight;
+	}
+	
+	// Constructor for User selecting Body Fat Percentage
+	public User(int age, double height, double weight, double waist, double hip, double neck, String gender) {
+		// TODO Auto-generated constructor stub
+		this.age = age;
+		this.height = height;
+		this.weight = weight;
+		this.waist = waist;
+		
+		if (hip == 0) {
+			this.hip = 0;
+		} else {
+			this.hip = hip;
+		}
+		
+		this.gender = gender;
+	}
+	
 	// method for calculating BMI
 	public double calculateBMI() {
 		double bmi = (weight / height) * 703;
