@@ -55,6 +55,32 @@ public class User {
 		}
 		return bodyFat;
 	}
+	
+	// Display message for user's body fat
+	public String displayBodyFatMsgMale() {
+		double result = calculateBodyFat();
+		String message;
+		int resultInt = (int) result;
+		if (isBetween(resultInt, 2, 5)) {
+			message = "Essential Fat";
+		} else if (isBetween(resultInt, 6, 13)) {
+			message = "Athletes";
+		} else if (isBetween(resultInt, 14, 17)) {
+			message = "Fitness";
+		} else if (isBetween(resultInt, 18, 24)) {
+			message = "Average";
+		} else if (isBetween(resultInt, 25, Integer.MAX_VALUE)) {
+			message = "Obese";
+		} else {
+			message = "Check your results again.";
+		}
+		
+		return message;
+	}
+	
+	private static boolean isBetween(int result, int low, int high) {
+		return low <= result && result <= high;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
