@@ -1,18 +1,18 @@
+import java.awt.CardLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+
 import javax.swing.*;
 
 import View.MethodSelectView;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-
-public class FitnessCalculator extends JFrame {
-	
+public class MainFrame extends JFrame {
 	private MethodSelectView methodSelectView;
 	private CardLayout cardLayout;
 	private JPanel cardPanel;
 	
-	public FitnessCalculator() {
+	public MainFrame() {
+		// TODO Auto-generated constructor stub
 		setPreferredSize(new Dimension(1000, 1000));
 		setMaximumSize(new Dimension(1000, 1000));
 		
@@ -30,12 +30,6 @@ public class FitnessCalculator extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new FitnessCalculator();
 
 	}
-
 }
