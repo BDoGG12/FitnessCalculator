@@ -39,6 +39,10 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 
 	}
+	
+	public void showView(String viewName) {
+		cardLayout.show(cardPanel, viewName);
+	}
 
 	public MethodSelectView getMethodSelectView() {
 		return methodSelectView;
