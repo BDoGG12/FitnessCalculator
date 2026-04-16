@@ -4,11 +4,18 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
+import View.HomeView;
+import View.InputView;
 import View.MethodSelectView;
+import View.ResultsView;
 
 public class MainFrame extends JFrame {
 	private MethodSelectView methodSelectView;
+	private HomeView homeView;
+	private InputView inputView;
 	private CardLayout cardLayout;
+	private ResultsView resultsView;
+	
 	private JPanel cardPanel;
 	
 	public MainFrame() {
@@ -32,4 +39,22 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 
 	}
+
+	public MethodSelectView getMethodSelectView() {
+		return methodSelectView;
+	}
+
+	public HomeView getHomeView() {
+		return homeView;
+	}
+
+	public InputView getInputView() {
+		return inputView;
+	}
+
+	public ResultsView getResultsView() {
+		return resultsView;
+	}
+	
+	
 }
