@@ -1,13 +1,14 @@
+package main;
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 
 import javax.swing.*;
 
-import View.HomeView;
-import View.InputView;
-import View.MethodSelectView;
-import View.ResultsView;
+import view.HomeView;
+import view.InputView;
+import view.MethodSelectView;
+import view.ResultsView;
 
 public class MainFrame extends JFrame {
 	private MethodSelectView methodSelectView;
