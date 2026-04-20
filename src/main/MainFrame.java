@@ -28,13 +28,25 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		setLocationByPlatform(true);
 		
-		
+		cardLayout = new CardLayout();
+		cardPanel = new JPanel(cardLayout);
 		
 		Container cp = getContentPane();
-		JPanel panel = new JPanel();
-		methodSelectView = new MethodSelectView();
-		panel.add(methodSelectView);
-		cp.add(panel);
+		//JPanel panel = new JPanel();
+		//homeView = new HomeView();
+		inputView = new InputView();
+		//methodSelectView = new MethodSelectView();
+		//cardPanel.add(methodSelectView, "SELECT METHOD");
+
+		resultsView = new ResultsView();
+		
+		//cardPanel.add(homeView, "HOME");
+		cardPanel.add(inputView, "INPUT");
+		cardPanel.add(resultsView, "RESULT");
+		//panel.add(homeView);
+		//panel.add(inputView);
+		//panel.add(resultsView);
+		cp.add(cardPanel);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
