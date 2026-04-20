@@ -60,5 +60,9 @@ public class BMIInputView extends JPanel {
 	public JButton getBackButton() {
 		return backButton;
 	}
+	
+	public static void main(String[] args) {
+		new BMIInputView();
+	}
 
 }

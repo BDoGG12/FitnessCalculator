@@ -45,6 +45,10 @@ public class ResultsView extends JPanel {
 		return homeButton;
 	}
 	
+	public static void main(String[] args) {
+		new ResultsView();
+	}
+	
 	
 	
 	
