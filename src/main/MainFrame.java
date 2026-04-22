@@ -33,14 +33,13 @@ public class MainFrame extends JFrame {
 		
 		Container cp = getContentPane();
 		//JPanel panel = new JPanel();
-		//homeView = new HomeView();
+		homeView = new HomeView();
 		inputView = new InputView();
-		//methodSelectView = new MethodSelectView();
-		//cardPanel.add(methodSelectView, "SELECT METHOD");
+		
 
 		resultsView = new ResultsView();
 		
-		//cardPanel.add(homeView, "HOME");
+		cardPanel.add(homeView, "HOME");
 		cardPanel.add(inputView, "INPUT");
 		cardPanel.add(resultsView, "RESULT");
 		//panel.add(homeView);
