@@ -11,10 +11,11 @@ public class HomeView extends JPanel {
 		// TODO Auto-generated constructor stub
 		
 		// set layout to border layout
-		setLayout(new BorderLayout());
+		setLayout(new GridLayout(3, 2, 10, 10));
 		
 		JLabel titleLabel = new JLabel("Welcome to Fitness Calculator", SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
+		startButton = new JButton("Start");
 		
 		add(titleLabel, BorderLayout.CENTER);
 		add(startButton, BorderLayout.SOUTH);
