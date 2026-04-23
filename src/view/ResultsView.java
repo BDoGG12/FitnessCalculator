@@ -11,6 +11,7 @@ public class ResultsView extends JPanel {
     private JLabel categoryLabel;
     private JButton backButton;
     private JButton homeButton;
+    private JButton downloadButton;
 
 	public ResultsView() {
 		// TODO Auto-generated constructor stub
@@ -23,12 +24,14 @@ public class ResultsView extends JPanel {
 		
 		backButton = new JButton("Back");
 		homeButton = new JButton("Home");
+		downloadButton = new JButton("Download Results");
 		
 		add(bmiLabel);
 		add(bodyFatLabel);
 		add(categoryLabel);
 		add(backButton);
 		add(homeButton);
+		add(downloadButton);
 	}
 	
 	public void updateResults(double bmi, double bodyFat, String category) {
@@ -45,6 +48,16 @@ public class ResultsView extends JPanel {
 		return homeButton;
 	}
 	
+	
+	
+	public JButton getDownloadButton() {
+		return downloadButton;
+	}
+
+	public void setDownloadButton(JButton downloadButton) {
+		this.downloadButton = downloadButton;
+	}
+
 	public static void main(String[] args) {
 		new ResultsView();
 	}
