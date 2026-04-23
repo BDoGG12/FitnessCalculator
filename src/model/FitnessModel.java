@@ -6,6 +6,8 @@ public class FitnessModel {
     private double height;
     private int age;
     private String gender;
+    public double bmi;
+    public double bodyFat;
 
     public FitnessModel(double weight, double height, int age, String gender) {
         this.weight = weight;
@@ -15,20 +17,22 @@ public class FitnessModel {
     }
 
     public double calculateBMI() {
-        return weight / (height * height);
+        this.bmi = weight / (height * height);
+        return this.bmi;
     }
 
     public double calculateBodyFat() {
-        double bmi = calculateBMI();
+        this.bmi = calculateBMI();
         if (gender.equalsIgnoreCase("Male")) {
-            return (1.20 * bmi) + (0.23 * age) - 16.2;
+            this.bodyFat = (1.20 * bmi) + (0.23 * age) - 16.2;
         } else {
-            return (1.20 * bmi) + (0.23 * age) - 5.4;
+            this.bodyFat = (1.20 * bmi) + (0.23 * age) - 5.4;
         }
+        return this.bodyFat;
     }
 
     public String getBMICategory() {
-        double bmi = calculateBMI();
+        this.bmi = calculateBMI();
 
         if (bmi < 18.5) {
             return "Underweight";
