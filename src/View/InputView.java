@@ -2,29 +2,34 @@ package view;
 
 
 import javax.swing.*;
+
 import java.awt.*;
 
-public class BMIInputView extends JPanel {
+public class InputView extends JPanel {
+	
 	private JTextField weightField;
 	private JTextField heightField;
 	private JTextField ageField;
 	private JComboBox<String> genderBox;
-	private JButton calculateButton;
-	private JButton backButton;
+	private JButton calculateBtn;
+	private JButton backBtn;
 	
-	public BMIInputView() {
+	public InputView() {
 		// TODO Auto-generated constructor stub
+		GridLayout gridLayout = new GridLayout(6, 2, 10, 10);
+		setLayout(gridLayout);
+		
 		weightField = new JTextField();
 		heightField = new JTextField();
 		ageField = new JTextField();
 		genderBox = new JComboBox<>(new String[] {"Male", "Female"});
-		calculateButton = new JButton("Calculate");
-		backButton = new JButton("Back");
+		calculateBtn = new JButton("Calculate");
+		backBtn = new JButton("Back");
 		
-		add(new JLabel("Weight (Ibs):"));
+		add(new JLabel("Weight (kg):"));
         add(weightField);
 
-        add(new JLabel("Height (in):"));
+        add(new JLabel("Height (m):"));
         add(heightField);
 
         add(new JLabel("Age:"));
@@ -33,36 +38,51 @@ public class BMIInputView extends JPanel {
         add(new JLabel("Gender:"));
         add(genderBox);
 
-        add(backButton);
-        add(calculateButton);
+        add(backBtn);
+        add(calculateBtn);
 	}
 	
+	
+
 	public JTextField getWeightField() {
 		return weightField;
 	}
+
+
 
 	public JTextField getHeightField() {
 		return heightField;
 	}
 
+
+
 	public JTextField getAgeField() {
 		return ageField;
 	}
+
+
 
 	public JComboBox<String> getGenderBox() {
 		return genderBox;
 	}
 
-	public JButton getCalculateButton() {
-		return calculateButton;
+
+
+	public JButton getCalculateBtn() {
+		return calculateBtn;
 	}
 
-	public JButton getBackButton() {
-		return backButton;
+
+
+	public JButton getBackBtn() {
+		return backBtn;
 	}
-	
+
+
+
 	public static void main(String[] args) {
-		new BMIInputView();
+		// TODO Auto-generated method stub
+		new InputView();
 	}
 
 }
