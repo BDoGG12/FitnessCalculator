@@ -1,5 +1,9 @@
 package controller;
 import javax.swing.*;
+
+import FileSaveManager.FileCsvSaver;
+import FileSaveManager.SaveCsvDialog;
+
 import java.awt.*;
 import controller.*;
 import main.MainFrame;
@@ -7,6 +11,8 @@ import model.FitnessModel;
 
 public class FitnessController {
 	private MainFrame mainFrame;
+	
+	public FitnessModel model;
 	
 	public FitnessController(MainFrame mainFrame) {
 		// TODO Auto-generated constructor stub
@@ -30,7 +36,7 @@ public class FitnessController {
                 int age = Integer.parseInt(mainFrame.getInputView().getAgeField().getText());
                 String gender = (String) mainFrame.getInputView().getGenderBox().getSelectedItem();
 
-                FitnessModel model = new FitnessModel(weight, height, age, gender);
+                model = new FitnessModel(weight, height, age, gender);
 
                 double bmi = model.calculateBMI();
                 double bodyFat = model.calculateBodyFat();
@@ -54,6 +60,21 @@ public class FitnessController {
 		mainFrame.getResultsView().getHomeButton().addActionListener(e -> {
 			mainFrame.showView("HOME");
 		});
+		
+		mainFrame.getResultsView().getDownloadButton().addActionListener(e -> {
+			this.handleSave();
+		});
+	}
+	
+	public void handleSave() {
+		String path = SaveCsvDialog.chooseFilePath();
+		
+		if (path != null) {
+			double bmi = model.bmi;
+			double bodyFat = model.bodyFat;
+			
+			FileCsvSaver.saveResult(path, bmi, bodyFat);
+		}
 	}
 
 }
