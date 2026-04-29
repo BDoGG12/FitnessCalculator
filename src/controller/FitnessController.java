@@ -31,12 +31,28 @@ public class FitnessController {
 		
 		mainFrame.getInputView().getCalculateBtn().addActionListener(e -> {
             try {
-                double weight = Double.parseDouble(mainFrame.getInputView().getWeightField().getText());
-                double height = Double.parseDouble(mainFrame.getInputView().getHeightField().getText());
-                int age = Integer.parseInt(mainFrame.getInputView().getAgeField().getText());
-                String gender = (String) mainFrame.getInputView().getGenderBox().getSelectedItem();
+            	double weightLbs = Double.parseDouble(mainFrame.getInputView().getWeightField().getText());
+            	double heightFeet = Double.parseDouble((String) mainFrame.getInputView().getHeightFeetBox().getSelectedItem());
+            	double heightInches = Double.parseDouble((String) mainFrame.getInputView().getHeightInchesBox().getSelectedItem());
+            	int age = Integer.parseInt(mainFrame.getInputView().getAgeField().getText());
+            	String gender = (String) mainFrame.getInputView().getGenderBox().getSelectedItem();
 
-                model = new FitnessModel(weight, height, age, gender);
+            	// Convert to metric
+            	double weightKg = weightLbs * 0.453592;
+            	double heightM = ((heightFeet * 12) + heightInches) * 0.0254;
+
+            	if (weightLbs <= 0 || weightLbs > 1100) {
+            	    JOptionPane.showMessageDialog(mainFrame, "Please enter a valid weight (1–1100 lbs).", "Input Error", JOptionPane.ERROR_MESSAGE);
+            	    return;
+            	}
+            	
+            	if (age < 1 || age > 120) {
+            	    JOptionPane.showMessageDialog(mainFrame, "Please enter a valid age (1–120).", "Input Error", JOptionPane.ERROR_MESSAGE);
+            	    return;
+            	}
+
+            	// Pass converted metric values to the model
+            	model = new FitnessModel(weightKg, heightM, age, gender);
 
                 double bmi = model.calculateBMI();
                 double bodyFat = model.calculateBodyFat();
