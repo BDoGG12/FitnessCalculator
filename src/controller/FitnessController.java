@@ -30,44 +30,64 @@ public class FitnessController {
 		});
 		
 		mainFrame.getInputView().getCalculateBtn().addActionListener(e -> {
-            try {
-            	double weightLbs = Double.parseDouble(mainFrame.getInputView().getWeightField().getText());
-            	double heightFeet = Double.parseDouble((String) mainFrame.getInputView().getHeightFeetBox().getSelectedItem());
-            	double heightInches = Double.parseDouble((String) mainFrame.getInputView().getHeightInchesBox().getSelectedItem());
-            	int age = Integer.parseInt(mainFrame.getInputView().getAgeField().getText());
-            	String gender = (String) mainFrame.getInputView().getGenderBox().getSelectedItem();
+    try {
+        // Clear previous errors first
+        mainFrame.getInputView().showWeightError(false);
+        mainFrame.getInputView().showAgeError(false);
 
-            	// Convert to metric
-            	double weightKg = weightLbs * 0.453592;
-            	double heightM = ((heightFeet * 12) + heightInches) * 0.0254;
+        String weightText = mainFrame.getInputView().getWeightField().getText().trim();
+        String ageText    = mainFrame.getInputView().getAgeField().getText().trim();
 
-            	if (weightLbs <= 0 || weightLbs > 1100) {
-            	    JOptionPane.showMessageDialog(mainFrame, "Please enter a valid weight (1–1100 lbs).", "Input Error", JOptionPane.ERROR_MESSAGE);
-            	    return;
-            	}
-            	
-            	if (age < 1 || age > 120) {
-            	    JOptionPane.showMessageDialog(mainFrame, "Please enter a valid age (1–120).", "Input Error", JOptionPane.ERROR_MESSAGE);
-            	    return;
-            	}
+        boolean hasError = false;
 
-            	// Pass converted metric values to the model
-            	model = new FitnessModel(weightKg, heightM, age, gender);
+        if (weightText.isEmpty()) {
+            mainFrame.getInputView().showWeightError(true);
+            hasError = true;
+        }
 
-                double bmi = model.calculateBMI();
-                double bodyFat = model.calculateBodyFat();
-                String category = model.getBMICategory();
+        if (ageText.isEmpty()) {
+            mainFrame.getInputView().showAgeError(true);
+            hasError = true;
+        }
 
-                mainFrame.getResultsView().updateResults(bmi, bodyFat, category);
-                mainFrame.showView("RESULT");
+        if (hasError) return;
 
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(mainFrame,
-                        "Please enter valid numeric values.",
-                        "Input Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-        });
+        double weightLbs  = Double.parseDouble(weightText);
+        double heightFeet = Double.parseDouble((String) mainFrame.getInputView().getHeightFeetBox().getSelectedItem());
+        double heightInches = Double.parseDouble((String) mainFrame.getInputView().getHeightInchesBox().getSelectedItem());
+        int age = Integer.parseInt(ageText);
+        String gender = (String) mainFrame.getInputView().getGenderBox().getSelectedItem();
+
+        if (weightLbs <= 0 || weightLbs > 1100) {
+            mainFrame.getInputView().showWeightError(true);
+            return;
+        }
+        if (age < 1 || age > 120) {
+            mainFrame.getInputView().showAgeError(true);
+            return;
+        }
+
+        double weightKg = weightLbs * 0.453592;
+        double heightM  = ((heightFeet * 12) + heightInches) * 0.0254;
+
+        model = new FitnessModel(weightKg, heightM, age, gender);
+
+        double bmi      = model.calculateBMI();
+        double bodyFat  = model.calculateBodyFat();
+        String category = model.getBMICategory();
+
+        mainFrame.getResultsView().updateResults(bmi, bodyFat, category);
+        mainFrame.showView("RESULT");
+
+    } catch (NumberFormatException ex) {
+        // DocumentFilter prevents this from happening in normal use
+        // but kept as a safety net
+        JOptionPane.showMessageDialog(mainFrame,
+            "Please enter valid numeric values.",
+            "Input Error",
+            JOptionPane.ERROR_MESSAGE);
+    }
+});
 		
 		mainFrame.getResultsView().getBackButton().addActionListener(e -> {
 			mainFrame.showView("INPUT");
