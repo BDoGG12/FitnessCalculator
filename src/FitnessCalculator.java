@@ -2,7 +2,6 @@ import javax.swing.*;
 
 import controller.FitnessController;
 import main.MainFrame;
-import view.MethodSelectView;
 
 import java.awt.*;
 import java.awt.event.*;
