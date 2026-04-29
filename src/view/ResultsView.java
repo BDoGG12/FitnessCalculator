@@ -13,26 +13,32 @@ public class ResultsView extends JPanel {
     private JButton homeButton;
     private JButton downloadButton;
 
-	public ResultsView() {
-		// TODO Auto-generated constructor stub
-		
-		setLayout(new GridLayout(5, 1, 10, 10));
-		
-		bmiLabel = new JLabel("BMI: ");
-		bodyFatLabel = new JLabel("Body Fat %: ");
-		categoryLabel = new JLabel("BMI Category: ");
-		
-		backButton = new JButton("Back");
-		homeButton = new JButton("Home");
-		downloadButton = new JButton("Download Results");
-		
-		add(bmiLabel);
-		add(bodyFatLabel);
-		add(categoryLabel);
-		add(backButton);
-		add(homeButton);
-		add(downloadButton);
-	}
+    public ResultsView() {
+        setLayout(new BorderLayout(10, 10));
+        setBorder(BorderFactory.createEmptyBorder(60, 20, 20, 20)); 
+
+        bmiLabel = new JLabel("BMI: ");
+        bodyFatLabel = new JLabel("Body Fat %: ");
+        categoryLabel = new JLabel("BMI Category: ");
+        backButton = new JButton("Back");
+        homeButton = new JButton("Home");
+        downloadButton = new JButton("Download Results");
+
+        // Results at the top
+        JPanel resultsPanel = new JPanel(new GridLayout(3, 1, 5, 5));
+        resultsPanel.add(bmiLabel);
+        resultsPanel.add(bodyFatLabel);
+        resultsPanel.add(categoryLabel);
+
+        // Buttons at the bottom
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 10, 0));
+        buttonPanel.add(homeButton);
+        buttonPanel.add(backButton);
+        buttonPanel.add(downloadButton);
+
+        add(resultsPanel, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
+    }
 	
 	public void updateResults(double bmi, double bodyFat, String category) {
 		bmiLabel.setText("BMI: " + String.format("%.2f", bmi));
