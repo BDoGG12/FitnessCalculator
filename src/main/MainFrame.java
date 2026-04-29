@@ -7,11 +7,9 @@ import javax.swing.*;
 
 import view.HomeView;
 import view.InputView;
-import view.MethodSelectView;
 import view.ResultsView;
 
 public class MainFrame extends JFrame {
-	private MethodSelectView methodSelectView;
 	private HomeView homeView;
 	private InputView inputView;
 	private CardLayout cardLayout;
@@ -21,10 +19,9 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame() {
 		// TODO Auto-generated constructor stub
-		setPreferredSize(new Dimension(1000, 1000));
-		setMaximumSize(new Dimension(1000, 1000));
-		
-		setMinimumSize(new Dimension(1000, 1000));
+		setPreferredSize(new Dimension(500, 400));
+		setMaximumSize(new Dimension(500, 400));
+		setMinimumSize(new Dimension(500, 400));
 		setResizable(false);
 		setLocationByPlatform(true);
 		
@@ -42,12 +39,10 @@ public class MainFrame extends JFrame {
 		cardPanel.add(homeView, "HOME");
 		cardPanel.add(inputView, "INPUT");
 		cardPanel.add(resultsView, "RESULT");
-		//panel.add(homeView);
-		//panel.add(inputView);
-		//panel.add(resultsView);
 		cp.add(cardPanel);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pack(); // add this
 		setVisible(true);
 
 	}
@@ -56,9 +51,6 @@ public class MainFrame extends JFrame {
 		cardLayout.show(cardPanel, viewName);
 	}
 
-	public MethodSelectView getMethodSelectView() {
-		return methodSelectView;
-	}
 
 	public HomeView getHomeView() {
 		return homeView;
